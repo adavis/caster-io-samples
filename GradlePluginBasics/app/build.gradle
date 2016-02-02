@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: BumpReadMeVersionPlugin
 
 android {
     compileSdkVersion 23
@@ -22,4 +23,42 @@ android {
 dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
+}
+
+class BumpReadMeVersionPlugin implements Plugin<Project> {
+
+    void apply(Project project) {
+
+        project.afterEvaluate {
+            project.task('bumpVersion', type: BumpVersion) {
+                readMe = new File(project.rootDir.absolutePath + "/README.md")
+                versionName = project.android.defaultConfig.versionName
+            }
+        }
+    }
+}
+
+class BumpVersion extends DefaultTask {
+
+    def readMe
+    def versionName
+
+    File getReadMe() {
+        project.file(readMe)
+    }
+
+    BumpVersion() {
+        group = 'pluginBasics'
+    }
+
+    @TaskAction
+    def bump() {
+        description = 'Updates ReadMe file with the latest version'
+
+        File readMeFile = getReadMe()
+        String contents = readMeFile.getText('UTF-8')
+        contents = contents.replaceAll("pluginBasics:.*", "pluginBasics:${versionName}")
+        readMeFile.write(contents, 'UTF-8')
+    }
+
 }
