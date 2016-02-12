@@ -16,7 +16,7 @@ public class DisplayVersion extends DefaultTask {
     def display() {
         description = 'Prints out the current version number'
 
-        println "**** My Version: ${project.android.defaultConfig.versionName} ****"
+        println "**** My Version: ${versionName} ****"
     }
 
 }
