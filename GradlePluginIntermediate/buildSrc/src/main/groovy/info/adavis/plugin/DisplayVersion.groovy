@@ -9,7 +9,7 @@ public class DisplayVersion extends DefaultTask {
     def versionName
 
     DisplayVersion() {
-        group = 'pluginInt'
+        group = 'plugin v2'
     }
 
     @TaskAction

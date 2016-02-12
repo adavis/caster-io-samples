@@ -15,7 +15,7 @@ public class BumpVersion extends DefaultTask {
     }
 
     BumpVersion() {
-        group = 'pluginInt'
+        group = 'plugin v2'
     }
 
     @TaskAction
