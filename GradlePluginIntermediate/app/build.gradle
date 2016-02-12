@@ -28,3 +28,7 @@ dependencies {
     compile project(':mylibrary')
 }
 
+bumpReadMeVersion {
+    overrideContent = 'app:'
+}
+

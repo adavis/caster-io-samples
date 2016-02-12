@@ -8,6 +8,7 @@ public class BumpVersion extends DefaultTask {
 
     def readMe
     def versionName
+    def overrideContent
 
     File getReadMe() {
         project.file(readMe)
@@ -23,7 +24,7 @@ public class BumpVersion extends DefaultTask {
 
         File readMeFile = getReadMe()
         String contents = readMeFile.getText('UTF-8')
-        contents = contents.replaceAll("plugin:.*", "plugin:${versionName}")
+        contents = contents.replaceAll("${overrideContent}.*", "${overrideContent}${versionName}")
         readMeFile.write(contents, 'UTF-8')
     }
 

@@ -4,4 +4,6 @@ This is a sample library used to demonstrate the creation of a Gradle Plugin ins
 
 ### Version Info
 
-plugin:0.0
+app:0.0
+
+my-library:0.0
